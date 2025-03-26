@@ -1,0 +1,36 @@
+<app-header></app-header>
+<div class="dashboard-container">
+  <h1>Admin Dashboard</h1>
+  
+  <div class="stats-container">
+    <mat-card class="stat-card">
+      <mat-card-content>
+        <div class="stat-value">{{totalSlots}}</div>
+        <div class="stat-label">Total Slots</div>
+      </mat-card-content>
+    </mat-card>
+    
+    <mat-card class="stat-card available">
+      <mat-card-content>
+        <div class="stat-value">{{availableSlots}}</div>
+        <div class="stat-label">Available</div>
+      </mat-card-content>
+    </mat-card>
+    
+    <mat-card class="stat-card occupied">
+      <mat-card-content>
+        <div class="stat-value">{{occupiedSlots}}</div>
+        <div class="stat-label">Occupied</div>
+      </mat-card-content>
+    </mat-card>
+    
+    <mat-card class="stat-card">
+      <mat-card-content>
+        <div class="stat-value">{{todayEntries}}</div>
+        <div class="stat-label">Today's Entries</div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  
+  <app-parking-grid [userRole]="userRole"></app-parking-grid>
+</div>

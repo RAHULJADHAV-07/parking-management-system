@@ -1,0 +1,43 @@
+<div class="parking-container">
+  <h2>Parking Layout ({{ totalSlots }} Slots)</h2>
+
+  <div class="parking-grid">
+    <div class="row" *ngFor="let row of parkingGrid">
+      <div class="slot-container"
+           *ngFor="let slot of row"
+           cdkDropList
+           [id]="'dropList_' + slot.number"
+           #dropList="cdkDropList"
+           [cdkDropListData]="row"
+           [cdkDropListConnectedTo]="userRole !== 'customer' ? dropLists : []"
+           (cdkDropListDropped)="drop($event)">
+
+        <div class="parking-slot" 
+             [ngClass]="{ 'occupied': slot?.isOccupied }"
+             matTooltip="{{ slot?.isOccupied ? 'Vehicle: ' + slot?.vehicleInfo?.registrationNumber : 'Available' }}"
+             cdkDrag [cdkDragDisabled]="userRole === 'customer' || !slot?.isOccupied">
+
+          <div class="slot-number">Slot {{ slot?.number }}</div>
+
+          <div *ngIf="slot?.isOccupied" class="vehicle-info">
+            <div class="reg-number">Reg: {{ slot?.vehicleInfo?.registrationNumber }}</div>
+            <div class="vehicle-type">Type: {{ slot?.vehicleInfo?.vehicleType }}</div>
+            <div class="customer-name">Customer: {{ slot?.vehicleInfo?.customerName }}</div>
+            <div class="customer-mobile">Mobile: {{ slot?.vehicleInfo?.customerMobile }}</div>
+            <div class="entry-time">Entry: {{ slot?.vehicleInfo?.entryTime | date:'shortTime' }}</div>
+          </div>
+
+          <mat-icon *ngIf="slot?.isOccupied" class="vehicle-icon">
+            {{ slot?.vehicleInfo?.vehicleType === 'Car' ? 'directions_car' : 'two_wheeler' }}
+          </mat-icon>
+
+          <!-- Drag preview -->
+          <div *cdkDragPreview class="drag-preview">
+            {{ slot?.vehicleInfo?.registrationNumber }}
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+.dashboard-container {
+  width: 100%;
+  margin: 50px 0;
+  padding: 20px;
+  text-align: center;
+}
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: white;
+    }
+  
+  
+  
+    app-parking-grid {
+      margin-top: 50px;
+    }
+  
+
+    .loading-spinner {
+      text-align: center;
+      margin-top: 20px;
+    }
+    
+    .no-records-message {
+      text-align: center;
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #f8f9fa;
+      border-radius: 5px;
+    }

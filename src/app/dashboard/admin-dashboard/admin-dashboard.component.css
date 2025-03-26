@@ -1,0 +1,73 @@
+.dashboard-container {
+  width: 100%;
+  margin: 50px 0;
+  padding: 20px;
+  text-align: center;
+}
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: white;
+    }
+  
+  
+  
+    app-parking-grid {
+      margin-top: 50px;
+    }
+  
+
+ 
+  
+    .stats-container {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+  
+    .stat-card {
+      flex: 1;
+      min-width: 200px;
+      padding: 20px;
+      text-align: center;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      background: #fff;
+      transition: transform 0.2s ease-in-out;
+  
+      &:hover {
+        transform: translateY(-5px);
+      }
+  
+      .stat-value {
+        font-size: 28px;
+        font-weight: bold;
+        color: #333;
+      }
+  
+      .stat-label {
+        font-size: 16px;
+        color: #666;
+      }
+    }
+  
+    .available {
+      background: #e3fcef;
+      .stat-value {
+        color: #2e7d32;
+      }
+    }
+  
+    .occupied {
+      background: #ffebee;
+      .stat-value {
+        color: #d32f2f;
+      }
+    }
+  
+  
+  
+  

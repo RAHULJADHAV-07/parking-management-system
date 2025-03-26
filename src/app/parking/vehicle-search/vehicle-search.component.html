@@ -1,0 +1,43 @@
+<mat-card class="search-card">
+  <mat-card-header>
+    <mat-card-title>Find Your Vehicle</mat-card-title>
+  </mat-card-header>
+  
+  <mat-card-content>
+    <div class="search-form">
+      <mat-form-field appearance="outline" class="search-field">
+        <mat-label>Registration Number</mat-label>
+        <input matInput [formControl]="registrationNumber" placeholder="KA-01-AB-1234">
+        <mat-hint>Format: XX-99-XX-9999</mat-hint>
+        <mat-error *ngIf="registrationNumber.hasError('pattern')">
+          Invalid format. Example: MH-01-AB-1234
+        </mat-error>
+      </mat-form-field>
+      
+      <button mat-raised-button color="primary" (click)="searchVehicle()" [disabled]="!registrationNumber.valid">
+        Search
+      </button>
+      
+      <button mat-button (click)="clearSearch()" *ngIf="searchPerformed">
+        Clear
+      </button>
+    </div>
+    
+    <div class="search-results" *ngIf="searchPerformed">
+      <div *ngIf="searchResult?.found" class="vehicle-found">
+        <h3>Vehicle Found!</h3>
+        <div class="result-info">
+          <p><strong>Registration:</strong> {{searchResult.registrationNumber}}</p>
+          <p><strong>Parking Slot:</strong> {{searchResult.slotNumber}}</p>
+          <p><strong>Location:</strong> {{searchResult.location}}</p>
+          <p><strong>Entry Time:</strong> {{searchResult.entryTime | date:'medium'}}</p>
+        </div>
+      </div>
+      
+      <div *ngIf="!searchResult?.found" class="vehicle-not-found">
+        <h3>Vehicle Not Found</h3>
+        <p>The vehicle with registration number {{registrationNumber.value}} is not currently parked in this facility.</p>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

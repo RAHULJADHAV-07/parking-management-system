@@ -1,0 +1,58 @@
+<app-header></app-header>
+<div class="dashboard-container">
+  <h1>Watchman Dashboard</h1>
+  
+  <div class="watchman-controls">
+    <app-vehicle-entry (vehicleAdded)="handleVehicleAdded($event)"></app-vehicle-entry>
+  </div>
+  <br>
+  <button mat-raised-button color="primary" (click)="exportToExcel()">
+    Export Vehicle Records
+  </button>
+  <br><br>
+
+
+  <div class="container">
+    <div class="container">
+      
+    
+      <!-- Loading Indicator -->
+      <div *ngIf="isLoading" class="alert alert-info">
+        Loading vehicle records...
+      </div>
+    
+      <!-- Error Message -->
+      <div *ngIf="errorMessage" class="alert alert-warning">
+        {{ errorMessage }}
+        <button (click)="refreshRecords()" class="btn btn-primary ml-2">
+          Refresh Records
+        </button>
+      </div>
+    
+      <!-- Records Table -->
+      <div *ngIf="!isLoading && !errorMessage && vehicleRecords.length > 0">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Registration Number</th>
+              <th>Vehicle Type</th>
+              <th>Customer Name</th>
+              <th>Slot Number</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let record of vehicleRecords">
+              <td>{{ record.registrationNumber }}</td>
+              <td>{{ record.vehicleType }}</td>
+              <td>{{ record.customerName }}</td>
+              <td>{{ record.slotNumber }}</td>
+              <td>{{ record.status }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <app-parking-grid [userRole]="userRole"></app-parking-grid>
+</div>

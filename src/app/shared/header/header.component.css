@@ -1,0 +1,123 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  height: 64px;
+  background: linear-gradient(135deg, #3a3a3a, #252525); /* Dark Grey Gradient */
+  color: white;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /* Adds Depth */
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000; /* Keeps Header Above */
+}
+
+/* Logo Styling */
+.logo {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: white;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Spacer for Flexible Layout */
+.spacer {
+  flex: 1;
+}
+
+/* Role Badge - Matches Grid Style */
+.role-badge {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-right: 20px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 6px 12px;
+  border-radius: 6px;
+  text-transform: capitalize;
+  box-shadow: inset 0px 2px 4px rgba(255, 255, 255, 0.1);
+}
+
+/* Button Styling */
+button {
+  color: white;
+  background: transparent;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  transform: scale(1.05);
+}
+
+/* Material Icons Alignment */
+mat-icon {
+  vertical-align: middle;
+  font-size: 22px;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .header {
+    padding: 0 12px;
+    height: 56px;
+  }
+
+  .logo {
+    font-size: 1.3rem;
+  }
+
+  .role-badge {
+    font-size: 0.9rem;
+    padding: 5px 10px;
+    margin-right: 8px;
+  }
+
+  button {
+    font-size: 0.9rem;
+    padding: 6px 10px;
+  }
+
+  mat-icon {
+    font-size: 18px;
+  }
+}
+
+/* For even smaller screens */
+@media screen and (max-width: 480px) {
+  .header {
+    padding: 0 8px;
+    height: 50px;
+  }
+
+  .logo {
+    font-size: 1.1rem;
+  }
+
+  .role-badge {
+    font-size: 0.8rem;
+    padding: 4px 8px;
+  }
+
+  button {
+    font-size: 0.8rem;
+    padding: 5px 8px;
+  }
+
+  mat-icon {
+    font-size: 16px;
+  }
+}

@@ -1,0 +1,100 @@
+<mat-card class="entry-card">
+  <mat-card-header>
+    <mat-card-title>New Vehicle Entry</mat-card-title>
+  </mat-card-header>
+  
+  <mat-card-content>
+    <form [formGroup]="vehicleForm" (ngSubmit)="onSubmit()">
+      <div class="form-row">
+        <mat-form-field appearance="outline">
+          <mat-label>Registration Number</mat-label>
+          <input matInput formControlName="registrationNumber" placeholder="KA-01-AB-1234" required>
+          <mat-hint>Format: XX-99-XX-9999</mat-hint>
+          <mat-error *ngIf="vehicleForm.get('registrationNumber')?.hasError('required')">
+            Registration Number is required.
+          </mat-error>
+          <mat-error *ngIf="vehicleForm.get('registrationNumber')?.hasError('pattern')">
+            Invalid format! Example: KA-01-AB-1234
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Vehicle Type</mat-label>
+          <mat-select formControlName="vehicleType">
+            <mat-option *ngFor="let type of vehicleTypes" [value]="type.value">
+              {{ type.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      
+      <div class="form-row">
+        <mat-form-field appearance="outline">
+          <mat-label>Customer Name</mat-label>
+          <input matInput formControlName="customerName" placeholder="Enter customer name" required>
+          <mat-error *ngIf="vehicleForm.get('customerName')?.hasError('required')">
+            Customer Name is required.
+          </mat-error>
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline">
+          <mat-label>Mobile Number</mat-label>
+          <input matInput formControlName="customerMobile" placeholder="10 digits" required>
+          <mat-error *ngIf="vehicleForm.get('customerMobile')?.hasError('required')">
+            Mobile Number is required.
+          </mat-error>
+          <mat-error *ngIf="vehicleForm.get('customerMobile')?.hasError('pattern')">
+            Invalid format! Must be 10 digits.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline">
+          <mat-label>Slot Number</mat-label>
+          <input matInput formControlName="slotNumber" placeholder="Enter slot number" required>
+          <mat-error *ngIf="vehicleForm.get('slotNumber')?.hasError('required')">
+            Slot Number is required.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="button-row">
+        <button mat-raised-button color="primary" type="submit" [disabled]="vehicleForm.invalid">
+          Park Vehicle
+        </button>
+        <button mat-button type="reset">
+          Clear
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
+<br><br>
+<!-- ✅ New Form for Removing Vehicle -->
+<mat-card class="entry-card">
+  <mat-card-header>
+    <mat-card-title>Remove Vehicle</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <form [formGroup]="removeVehicleForm" (ngSubmit)="onRemoveVehicle()">
+      <mat-form-field appearance="outline">
+        <mat-label>Enter Registration Number</mat-label>
+        <input matInput formControlName="registrationNumber" placeholder="KA-01-AB-1234" required>
+        <mat-error *ngIf="removeVehicleForm.get('registrationNumber')?.hasError('required')">
+          Registration Number is required.
+        </mat-error>
+        <mat-error *ngIf="removeVehicleForm.get('registrationNumber')?.hasError('pattern')">
+          Invalid format! Example: KA-01-AB-1234
+        </mat-error>
+      </mat-form-field>
+
+      <div class="button-row">
+        <button mat-raised-button color="warn" type="submit" [disabled]="removeVehicleForm.invalid">
+          Remove Vehicle
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

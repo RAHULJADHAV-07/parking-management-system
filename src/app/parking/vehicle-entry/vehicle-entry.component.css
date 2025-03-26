@@ -1,0 +1,66 @@
+.entry-card {
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+  text-align: center;
+  background: #2a2a2a; /* Dark Grey Background similar to login */
+  color: #ffffff; /* White Text */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+}
+
+mat-card-header {
+  justify-content: center;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.button-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+button {
+  width: 100%;
+  background: #007bff; /* Blue Theme */
+  color: white;
+  border: none;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  transition: background 0.3s;
+  cursor: pointer;
+  gap: 10px;
+}
+
+button:hover {
+  background: green;
+}
+
+mat-form-field {
+  width: 100%;
+  background: #333; /* Darker Input Field */
+  border-radius: 8px;
+  padding: 8px;
+}
+
+input {
+  color: white;
+}
+
+.parking-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); 
+  gap: 20px; /* Increased gap between slots */
+  justify-content: center;
+}

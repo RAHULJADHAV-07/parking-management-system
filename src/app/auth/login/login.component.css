@@ -1,0 +1,117 @@
+/* Center the login container */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #2c2c2c, #1f1f1f); /* Dark Grey Gradient */
+  color: white;
+}
+
+/* Styling the card */
+.login-card {
+  width: 400px;
+  padding: 20px;
+  text-align: center;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, #333, #222); /* Dark Card */
+  color: white;
+}
+
+/* Form fields styling */
+.form-field {
+  margin-bottom: 20px;
+}
+
+/* Full width for input fields */
+.full-width {
+  width: 100%;
+}
+
+/* Input Field Styling */
+mat-form-field {
+  width: 100%;
+}
+
+mat-label {
+  color: white;
+}
+
+input {
+  color: white;
+}
+
+mat-select {
+  color: white;
+}
+
+/* Customizing Input Field Borders */
+mat-form-field .mat-form-field-outline {
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+/* Mat error messages */
+mat-error {
+  color: #ff4444;
+}
+
+/* Toggle Password Visibility */
+.password-container {
+  position: relative;
+}
+
+.password-container input {
+  padding-right: 40px; /* Space for icon */
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.7);
+  transition: color 0.3s;
+}
+
+.toggle-password:hover {
+  color: white;
+}
+
+/* Center the button */
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+
+/* Style the login button */
+button {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #28a745, #218838); /* Green Gradient */
+  color: white;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background: linear-gradient(135deg, #218838, #1e7e34);
+  transform: scale(1.02);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .login-card {
+      width: 90%;
+      padding: 15px;
+  }
+
+  button {
+      font-size: 14px;
+      padding: 10px;
+  }
+}

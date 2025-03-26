@@ -1,0 +1,10 @@
+<!-- src/app/shared/header/header.component.html -->
+<mat-toolbar color="primary" class="header">
+    <span class="logo">Parking Management System</span>
+    <span class="spacer"></span>
+    <span class="role-badge">{{userRole | titlecase}}</span>
+    <button mat-button (click)="logout()">
+      <mat-icon>exit_to_app</mat-icon>
+      Logout
+    </button>
+  </mat-toolbar>
