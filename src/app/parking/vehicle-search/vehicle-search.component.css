@@ -6,9 +6,8 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
   
-    mat-card-header {
-      justify-content: center;
-    }
+    :is(mat-card-header) { justify-content: center; }
+ 
   
     .search-form {
       display: flex;
