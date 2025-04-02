@@ -4,12 +4,14 @@
   "private": true,
   "scripts": {
     "ng": "ng",
-   "start": "node server.js",
-  "dev": "nodemon server.js",
+    "start": "node server.js",
+    "dev": "nodemon server.js",
     "backend": "node server.js",
-    "build": "node --max-old-space-size=2048 node_modules/@angular/cli/bin/ng build --configuration=production",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "frontend": "npx ng serve --host 0.0.0.0 --port 4200",
+    "build": "npx ng build --configuration=production",
+    "watch": "npx ng build --watch --configuration development",
+    "test": "ng test",
+    "postinstall": "npx ng build --configuration=production"
   },
   "dependencies": {
     "@angular/animations": "^16.2.0",
@@ -22,11 +24,14 @@
     "@angular/platform-browser": "^16.2.0",
     "@angular/platform-browser-dynamic": "^16.2.0",
     "@angular/router": "^16.2.0",
+    "@angular/cli": "^16.2.16",
     "bootstrap": "^5.3.3",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.18.2",
     "file-saver": "^2.0.5",
+    "mongoose": "^7.6.0",
+    "nodemon": "^3.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "xlsx": "^0.18.5",
@@ -34,7 +39,6 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^16.2.16",
-    "@angular/cli": "^16.2.16",
     "@angular/compiler-cli": "^16.2.0",
     "@types/file-saver": "^2.0.7",
     "@types/jasmine": "~4.3.0",
