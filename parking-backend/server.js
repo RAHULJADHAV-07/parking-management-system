@@ -73,7 +73,7 @@ app.use((err, req, res, next) => {
 // Connect to database and start server
 connectToDatabase().then(() => {
     const PORT = process.env.PORT || 5000;
-    app.listen(PORT, () => {
+    app.listen(PORT, '0.0.0.0', () => {
         console.log(`🚀 Server running on port ${PORT}`);
         console.log(`Server Environment: ${process.env.NODE_ENV || 'development'}`);
     });
