@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ParkingGridComponent } from '../../parking/parking-grid/parking-grid.component';
 import * as XLSX from 'xlsx';
-import { saveAs } from 'file-saver';
+// import { saveAs } from 'file-saver';
 import { VehicleService } from '../../services/vehicle.service';
 import { VehicleRecord } from '../../models/vehicle-record.model';
 import { catchError } from 'rxjs/operators';
@@ -78,32 +78,32 @@ export class WatchmanDashboardComponent implements OnInit {
     return throwError(() => new Error(errorMsg));
   }
 
-  exportToExcel() {
-    if (this.vehicleRecords.length === 0) {
-      this.errorMessage = 'No vehicle records available to export.';
-      return;
-    }
+  // exportToExcel() {
+  //   if (this.vehicleRecords.length === 0) {
+  //     this.errorMessage = 'No vehicle records available to export.';
+  //     return;
+  //   }
 
-    const worksheetData = this.vehicleRecords.map(record => ({
-      'Registration Number': record.registrationNumber,
-      'Vehicle Type': record.vehicleType,
-      'Customer Name': record.customerName,
-      'Mobile Number': record.customerMobile,
-      'Slot Number': record.slotNumber,
-      'Entry Time': record.entryTime ? new Date(record.entryTime).toLocaleString() : 'N/A',
-      'Exit Time': record.exitTime ? new Date(record.exitTime).toLocaleString() : 'N/A',
-      'Duration (mins)': record.duration || 'N/A',
-      'Status': record.status
-    }));
+  //   const worksheetData = this.vehicleRecords.map(record => ({
+  //     'Registration Number': record.registrationNumber,
+  //     'Vehicle Type': record.vehicleType,
+  //     'Customer Name': record.customerName,
+  //     'Mobile Number': record.customerMobile,
+  //     'Slot Number': record.slotNumber,
+  //     'Entry Time': record.entryTime ? new Date(record.entryTime).toLocaleString() : 'N/A',
+  //     'Exit Time': record.exitTime ? new Date(record.exitTime).toLocaleString() : 'N/A',
+  //     'Duration (mins)': record.duration || 'N/A',
+  //     'Status': record.status
+  //   }));
 
-    const worksheet = XLSX.utils.json_to_sheet(worksheetData);
-    const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, 'Vehicle Records');
+  //   const worksheet = XLSX.utils.json_to_sheet(worksheetData);
+  //   const workbook = XLSX.utils.book_new();
+  //   XLSX.utils.book_append_sheet(workbook, worksheet, 'Vehicle Records');
 
-    const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
-    const data = new Blob([excelBuffer], { type: 'application/octet-stream' });
-    saveAs(data, 'Vehicle_Records.xlsx');
-  }
+  //   const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+  //   const data = new Blob([excelBuffer], { type: 'application/octet-stream' });
+  //   saveAs(data, 'Vehicle_Records.xlsx');
+  // }
 
   refreshRecords() {
     this.loadVehicleRecords();
