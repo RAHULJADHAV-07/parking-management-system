@@ -17,8 +17,10 @@ services:
   - type: web
     name: parking-frontend
     env: static
-    buildCommand: npm install && npm run build
+    buildCommand: npm install --force && npm run build
     staticPublishPath: ./dist/parking-management-system
     envVars:
       - key: NODE_ENV
         value: production
+      - key: NODE_VERSION
+        value: 18.0.0

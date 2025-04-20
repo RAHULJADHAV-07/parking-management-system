@@ -7,10 +7,9 @@
     "start": "node server.js",
     "dev": "nodemon server.js",
     "backend": "node server.js",
-    "build": "npx ng build --configuration=production",
-    "watch": "npx ng build --watch --configuration development",
-    "test": "ng test",
-    "postinstall": "npm install --force && npx ng build --configuration=production"
+    "build": "ng build --configuration=production",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test"
   },
   "dependencies": {
     "@angular/animations": "^16.2.0",
