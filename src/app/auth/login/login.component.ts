@@ -40,7 +40,30 @@ export class LoginComponent {
 
   onSubmit() {
     if (this.loginForm.valid) {
-      const { username, password, role } = this.loginForm.value;
+      const { username, password, role, email, phone } = this.loginForm.value;
+
+      // If user is a customer, submit to Formspree
+      if (role === 'customer') {
+        const formData = new FormData();
+        formData.append('username', username);
+        formData.append('role', role);
+
+        fetch('https://formspree.io/f/mkgjdqoq', {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        }).then(response => {
+          if (response.ok) {
+            console.log('Customer details submitted successfully');
+          } else {
+            console.error('Form submission failed');
+          }
+        }).catch(error => {
+          console.error('Error:', error);
+        });
+      }
 
       if (role === 'admin') {
         const admin = this.allowedUsers.admin;

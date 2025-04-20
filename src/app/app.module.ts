@@ -16,6 +16,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSnackBarModule } from '@angular/material/snack-bar';  // ✅ Added for alerts
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatTableModule } from '@angular/material/table';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 // Routing Module
 import { AppRoutingModule } from './app-routing.module';
 
@@ -30,6 +32,8 @@ import { VehicleEntryComponent } from './parking/vehicle-entry/vehicle-entry.com
 import { VehicleSearchComponent } from './parking/vehicle-search/vehicle-search.component';
 
 import { HeaderComponent } from './shared/header/header.component';
+import { VehicleRecordsComponent } from './parking/vehicle-records/vehicle-records.component';
+import { LoaderComponent } from './shared/loader/loader.component';
 
 // Services
 import { VehicleService } from './services/vehicle.service';  // ✅ Ensure this service is provided
@@ -44,7 +48,9 @@ import { VehicleService } from './services/vehicle.service';  // ✅ Ensure this
     CustomerDashboardComponent,
     VehicleEntryComponent,
     VehicleSearchComponent,
-    HeaderComponent
+    HeaderComponent,
+    VehicleRecordsComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -62,8 +68,10 @@ import { VehicleService } from './services/vehicle.service';  // ✅ Ensure this
     MatTabsModule,
     MatToolbarModule,
     MatFormFieldModule,  // ✅ Added for input styling
-    MatSnackBarModule ,
-    MatTooltipModule   // ✅ Added for success/error messages
+    MatSnackBarModule,
+    MatTooltipModule,   // ✅ Added for success/error messages
+    MatTableModule,
+    MatProgressSpinnerModule
   ],
   providers: [VehicleService],  // ✅ Added VehicleService here
   bootstrap: [AppComponent]

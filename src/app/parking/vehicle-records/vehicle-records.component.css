@@ -1,0 +1,85 @@
+.records-container {
+  padding: 20px;
+}
+
+.records-table-container {
+  margin-top: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.records-table {
+  width: 100%;
+  background: white;
+}
+
+.mat-header-cell {
+  background: #f5f5f5;
+  color: #333;
+  font-weight: 600;
+  padding: 12px 16px;
+}
+
+.mat-cell {
+  padding: 12px 16px;
+}
+
+.mat-row:hover {
+  background-color: #f8f9fa;
+}
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.no-records, .error-message {
+  text-align: center;
+  margin: 20px 0;
+  padding: 16px;
+  border-radius: 4px;
+}
+
+.no-records {
+  font-style: italic;
+  color: #666;
+  background: #f8f9fa;
+}
+
+.error-message {
+  color: #721c24;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+}
+
+.status-active {
+  color: #28a745;
+  font-weight: 500;
+}
+
+.status-completed {
+  color: #6c757d;
+}
+
+button[mat-raised-button] {
+  margin-bottom: 16px;
+}
+
+.mat-mdc-row:nth-child(even) {
+  background-color: #f8f8f8;
+}
+
+.mat-mdc-row:hover {
+  background-color: #f0f0f0;
+}
+
+.mat-mdc-header-cell {
+  font-weight: bold;
+  color: #333;
+}
+
+.mat-mdc-cell {
+  padding: 12px 8px;
+}

@@ -1,23 +1,31 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { Observable, throwError, BehaviorSubject } from 'rxjs';
+import { catchError, tap, switchMap } from 'rxjs/operators';
 import { VehicleRecord } from '../models/vehicle-record.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VehicleService {
-  private apiUrl = 'http://localhost:5000/api/vehicles';
+  private apiUrl = 'http://localhost:3000/api/vehicles';
+  private vehiclesSubject = new BehaviorSubject<any[]>([]);
+  public vehicles$ = this.vehiclesSubject.asObservable();
 
   constructor(private http: HttpClient) { }
 
   addVehicle(vehicleData: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}`, vehicleData);
+    return this.http.post(`${this.apiUrl}`, vehicleData).pipe(
+      tap(response => {
+        this.getAllVehicles().subscribe();
+      })
+    );
   }
 
   getAllVehicles(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/all-vehicles`);
+    return this.http.get<any[]>(`${this.apiUrl}/all-vehicles`).pipe(
+      tap(vehicles => this.vehiclesSubject.next(vehicles))
+    );
   }
 
   searchVehicle(registrationNumber: string): Observable<any> {
@@ -25,7 +33,13 @@ export class VehicleService {
   }
   
   removeVehicleByNumber(regNumber: string): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/remove-by-number/${regNumber}`);
+    return this.http.delete(`${this.apiUrl}/remove-by-number/${regNumber}`).pipe(
+      switchMap(() => this.getAllVehicles()),
+      catchError(error => {
+        console.error('Error removing vehicle by number:', error);
+        return throwError(() => new Error('Error removing vehicle by registration number.'));
+      })
+    );
   }
   getDashboardStats(): Observable<{
     totalSlots: number;
@@ -64,5 +78,13 @@ getAllVehicleRecords(): Observable<any> {
   }>(`${this.apiUrl}/record`);
 }
 
-
+  removeVehicle(vehicleId: string): Observable<any> {
+      return this.http.delete(`${this.apiUrl}/${vehicleId}`).pipe(
+        switchMap(() => this.getAllVehicles()),
+        catchError(error => {
+          console.error('Error removing vehicle:', error);
+          return throwError(() => new Error('Error removing vehicle.'));
+        })
+      );
+    }
 }

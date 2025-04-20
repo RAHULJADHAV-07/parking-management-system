@@ -18,6 +18,7 @@ export class VehicleEntryComponent {
     { value: 'Other', viewValue: 'Other' }
   ];
   existingSlots: Set<number> = new Set();
+  vehicles$ = this.vehicleService.vehicles$;
 
   constructor(private fb: FormBuilder, private vehicleService: VehicleService) {
     // ✅ Form for Adding Vehicles
@@ -34,11 +35,8 @@ export class VehicleEntryComponent {
       registrationNumber: ['', [Validators.required, Validators.pattern('^[A-Z]{2}-[0-9]{1,2}-[A-Z]{1,2}-[0-9]{1,4}$')]]
     });
 
-    this.loadExistingSlots();
-  }
-
-  loadExistingSlots() {
-    this.vehicleService.getAllVehicles().subscribe(
+    // Subscribe to vehicles$ and update slots in real time
+    this.vehicles$.subscribe(
       vehicles => {
         this.existingSlots = new Set(vehicles.map(vehicle => vehicle.slotNumber));
       },
@@ -57,7 +55,13 @@ export class VehicleEntryComponent {
       };
 
       if (this.existingSlots.has(vehicleData.slotNumber)) {
-        alert(`⚠️ Slot ${vehicleData.slotNumber} is already occupied. Choose another slot.`);
+        alert(`⚠️ Slot ${vehicleData.slotNumber} is already occupied. Please choose another slot.`);
+        return;
+      }
+
+      // Additional validation to ensure slot number is within valid range
+      if (vehicleData.slotNumber < 1 || vehicleData.slotNumber > 100) {
+        alert('⚠️ Invalid slot number. Please choose a slot between 1 and 100.');
         return;
       }
 
@@ -67,7 +71,7 @@ export class VehicleEntryComponent {
         response => {
           this.vehicleAdded.emit(response);
           this.vehicleForm.reset({ vehicleType: 'Car' });
-          this.existingSlots.add(vehicleData.slotNumber);
+          // No need to manually add slot, will update via subscription
           alert('✅ Vehicle added successfully!');
         },
         error => {
@@ -89,6 +93,7 @@ export class VehicleEntryComponent {
         next: () => {
           alert(`✅ Vehicle with registration ${registrationNumber} removed successfully!`);
           this.removeVehicleForm.reset();
+          // No need to manually update slots, will update via subscription
         },
         error: (err) => {
           console.error('❌ Error removing vehicle:', err);

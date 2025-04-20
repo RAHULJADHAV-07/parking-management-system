@@ -31,12 +31,23 @@ export class ParkingGridComponent implements OnInit, AfterViewInit {
   rows: number = Math.ceil(this.totalSlots / this.columns);
   parkingSlots: ParkingSlot[] = [];
   parkingGrid: ParkingSlot[][] = [];
+  vehicles: any[] = [];
 
-  constructor(private vehicleService: VehicleService) {}
+  constructor(private vehicleService: VehicleService) {
+    this.vehicleService.vehicles$.subscribe(vehicles => {
+      this.vehicles = vehicles;
+      this.arrangeIntoGrid();
+    });
+  }
 
   ngOnInit(): void {
     this.initializeParkingSlots();
     this.fetchStoredVehicles();
+    
+    // Subscribe to vehicle updates
+    this.vehicleService.vehicles$.subscribe(vehicles => {
+      this.updateParkingGrid(vehicles);
+    });
   }
 
   ngAfterViewInit(): void {
@@ -57,34 +68,38 @@ export class ParkingGridComponent implements OnInit, AfterViewInit {
   fetchStoredVehicles(): void {
     this.vehicleService.getAllVehicles().subscribe(
       (vehicles) => {
-        // Reset all slots first
-        this.parkingSlots.forEach(slot => {
-          slot.isOccupied = false;
-          slot.vehicleInfo = undefined;
-        });
-
-        // Populate occupied slots
-        vehicles.forEach((vehicle: any) => {
-          const slotIndex = this.parkingSlots.findIndex(slot => slot.number === vehicle.slotNumber);
-          
-          if (slotIndex !== -1) {
-            this.parkingSlots[slotIndex].isOccupied = true;
-            this.parkingSlots[slotIndex].vehicleInfo = {
-              registrationNumber: vehicle.registrationNumber,
-              vehicleType: vehicle.vehicleType,
-              entryTime: new Date(vehicle.entryTime),
-              customerName: vehicle.customerName,
-              customerMobile: vehicle.customerMobile
-            };
-          }
-        });
-
-        this.arrangeIntoGrid();
+        this.updateParkingGrid(vehicles);
       },
       (error) => {
         console.error('Error fetching vehicles:', error);
       }
     );
+  }
+
+  updateParkingGrid(vehicles: any[]): void {
+    // Reset all slots first
+    this.parkingSlots.forEach(slot => {
+      slot.isOccupied = false;
+      slot.vehicleInfo = undefined;
+    });
+
+    // Populate occupied slots
+    vehicles.forEach((vehicle: any) => {
+      const slotIndex = this.parkingSlots.findIndex(slot => slot.number === vehicle.slotNumber);
+      
+      if (slotIndex !== -1) {
+        this.parkingSlots[slotIndex].isOccupied = true;
+        this.parkingSlots[slotIndex].vehicleInfo = {
+          registrationNumber: vehicle.registrationNumber,
+          vehicleType: vehicle.vehicleType,
+          entryTime: new Date(vehicle.entryTime),
+          customerName: vehicle.customerName,
+          customerMobile: vehicle.customerMobile
+        };
+      }
+    });
+
+    this.arrangeIntoGrid();
   }
 
   arrangeIntoGrid(): void {
@@ -112,7 +127,7 @@ export class ParkingGridComponent implements OnInit, AfterViewInit {
   allocateVehicle(vehicleInfo: any): void {
     const slotIndex = this.parkingSlots.findIndex(slot => slot.number === vehicleInfo.slotNumber);
 
-    if (slotIndex !== -1 && !this.parkingSlots[slotIndex].isOccupied) {
+    if (slotIndex !== -1 && vehicleInfo.slotNumber && !this.parkingSlots[slotIndex].isOccupied) {
       this.parkingSlots[slotIndex].isOccupied = true;
       this.parkingSlots[slotIndex].vehicleInfo = {
         ...vehicleInfo,

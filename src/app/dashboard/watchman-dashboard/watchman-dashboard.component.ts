@@ -108,4 +108,17 @@ export class WatchmanDashboardComponent implements OnInit {
   refreshRecords() {
     this.loadVehicleRecords();
   }
+
+  removeVehicle(vehicleId: string): void {
+    this.vehicleService.removeVehicle(vehicleId).subscribe({
+      next: () => {
+        this.parkingGrid.fetchStoredVehicles();
+        alert('Vehicle removed successfully.');
+      },
+      error: (error: string) => {
+        this.errorMessage = 'Error removing vehicle. Please try again.';
+        console.error('Error removing vehicle:', error);
+      }
+    });
+  }
 }
