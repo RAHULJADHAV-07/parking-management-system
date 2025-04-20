@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
-    "dev": "nodemon server.js",
+    "dev": "nodemon parking-backend/server.js",
     "backend": "node server.js",
     "build": "ng build --configuration=production",
     "watch": "ng build --watch --configuration development",
