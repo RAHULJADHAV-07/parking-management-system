@@ -1,0 +1,24 @@
+services:
+  # Backend API service
+  - type: web
+    name: parking-backend
+    env: node
+    buildCommand: cd parking-backend && npm install
+    startCommand: cd parking-backend && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: MONGO_URI
+        sync: false
+
+  # Frontend Angular service
+  - type: web
+    name: parking-frontend
+    env: static
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist/parking-management-system
+    envVars:
+      - key: NODE_ENV
+        value: production
