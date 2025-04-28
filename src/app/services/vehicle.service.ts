@@ -3,12 +3,15 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { catchError, tap, switchMap } from 'rxjs/operators';
 import { VehicleRecord } from '../models/vehicle-record.model';
+import { environment } from '../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VehicleService {
-  private apiUrl = 'http://localhost:3000/api/vehicles';
+  private apiUrl = environment.production ? 
+    'https://parking-management-system-9sqf.onrender.com/api/vehicles' : 
+    'http://localhost:3000/api/vehicles';
   private vehiclesSubject = new BehaviorSubject<any[]>([]);
   public vehicles$ = this.vehiclesSubject.asObservable();
 
