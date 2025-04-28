@@ -1,65 +1,93 @@
 .loader-container {
+  width: 250%;
+  height: 250%;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: #1a1a1a;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: rgba(0, 0, 0, 0.9);
   z-index: 9999;
-  transition: opacity 0.5s ease-in-out;
+}
+
+.progress-bar {
+  position: relative;
+  width: 750px;
+  height: 150px;
+  margin-bottom: 0px;
 }
 
 .car-loader {
-  width: 80px;
-  height: 80px;
-  margin-bottom: 20px;
-  animation: moveAcrossScreen 2s linear infinite;
-  -webkit-animation: moveAcrossScreen 2s linear infinite;
+  position: absolute;
+  width: auto;
+  height: 125px;
+  max-width: none;
+  fill: white;
+  top: -10px;
+  left: 0;
+  animation: moveCar 5s linear forwards;
+  z-index: 2;
 }
 
-h2 {
+.progress-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: #333;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, #4CAF50, #8BC34A);
+  animation: fillProgress 5s linear forwards;
+}
+
+.loading-text {
   color: white;
-  font-family: Arial, sans-serif;
-  margin-top: 20px;
-  opacity: 0.9;
-  animation: fadeIn 1s ease-in-out;
+  font-size: 18px;
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: 2px;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 0.9; transform: translateY(0); }
+@keyframes moveCar {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(650px);
+  }
 }
 
-.car-icon {
-  fill: #4CAF50;
-  transform-origin: center;
-  animation: drive 2s linear infinite;
-}
-
-@keyframes moveAcrossScreen {
+@keyframes fillProgress {
   0% {
     transform: translateX(-100%);
   }
   100% {
-    transform: translateX(100%);
+    transform: translateX(0);
   }
 }
 
-@keyframes pulse {
-  0% {
-    opacity: 1;
-    transform: scale(1);
+@media screen and (max-width: 480px) {
+  .progress-bar {
+    width: 600px;
   }
-  50% {
-    opacity: 0.7;
-    transform: scale(0.95);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
+  
+  @keyframes moveCar {
+    100% {
+      transform: translateX(500px);
+    }
   }
 }
