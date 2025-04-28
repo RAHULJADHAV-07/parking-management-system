@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://parking-management-system-9sqf.onrender.com/api/vehicles/all-vehicles'
+  apiUrl: 'https://parking-management-system-9sqf.onrender.com/api'
 };
 
 export const environment_dev = {
