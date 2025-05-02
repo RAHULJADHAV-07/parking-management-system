@@ -1,63 +1,107 @@
+
+
 # Parking Management System
 
-## Deployment Guide for Render
+A modern web-based parking management solution built with Angular and Node.js, featuring real-time slot tracking and automated parking management.
 
-This guide explains how to deploy the Parking Management System on Render.
+## 🚀 Features
 
-### Prerequisites
+### Core Functionality
+- **Real-time Parking Slot Management**
+  - Live tracking of available/occupied slots
+  - Dynamic slot allocation
+  - Visual parking grid representation
 
-1. A Render account (https://render.com)
-2. MongoDB Atlas database
-3. Your project code pushed to a Git repository
+### Technical Implementation
+- **SPA Architecture**
+  - Angular Router implementation
+  - Lazy-loaded modules for optimized performance
+  - Protected routes with Auth Guards
 
-### Deployment Steps
+- **Authentication & Security**
+  - Role-Based Access Control (RBAC)
+  - JWT-based authentication
+  - Secure API endpoints
 
-#### 1. MongoDB Atlas Setup
+- **Form Implementation**
+  - Reactive Forms with validation
+  - Real-time validation feedback
+  - Custom validators for vehicle registration
 
-1. Create a MongoDB Atlas cluster if you haven't already
-2. Get your MongoDB connection string
-3. Keep the connection string handy for the next steps
+- **API Integration**
+  - RESTful API endpoints
+  - MongoDB integration
+  - Error handling and status codes
 
-#### 2. Backend Deployment
+- **Search & Notifications**
+  - Vehicle search functionality
+  - Email notifications for parking status
+  - Real-time updates
 
-1. Log in to your Render dashboard
-2. Click "New +" and select "Web Service"
-3. Connect your Git repository
-4. Configure the service:
-   - Name: `parking-backend`
-   - Environment: `Node`
-   - Build Command: `cd parking-backend && npm install`
-   - Start Command: `cd parking-backend && npm start`
-5. Add environment variables:
-   - `NODE_ENV`: `production`
-   - `PORT`: `3000`
-   - `MONGO_URI`: Your MongoDB Atlas connection string
-6. Click "Create Web Service"
+- **UI/UX Features**
+  - Responsive design for all devices
+  - Custom animated loader
+  - Interactive parking grid
+  
 
-#### 3. Frontend Deployment
+## 🛠️ Technical Stack
 
-1. In Render dashboard, click "New +" and select "Static Site"
-2. Connect your Git repository
-3. Configure the service:
-   - Name: `parking-frontend`
-   - Build Command: `npm install && npm run build`
-   - Publish Directory: `dist/parking-management-system`
-4. Click "Create Static Site"
+- **Frontend**: Angular 16
+- **Backend**: Node.js, Express
+- **Database**: MongoDB
+- **Authentication**: JWT
+- **Styling**: CSS with Flexbox/Grid
+- **Deployment**: Render
 
-#### 4. Environment Configuration
+## 🚗 Live Demo
 
-1. After both services are deployed, go to the frontend service settings
-2. Update the API URL in your Angular environment to point to your backend service URL
+- Frontend: [[Live Demo Link](https://parking-management-system-1.onrender.com/)]
+- Backend API: [https://parking-management-system-9sqf.onrender.com/api](https://parking-management-system-9sqf.onrender.com/api/vehicles/all-vehicles)
 
-### Verifying Deployment
+]
 
-1. Wait for both services to complete their initial deployment
-2. Visit your frontend URL to verify the application is working
-3. Test key features like vehicle entry and removal
+## 🏃‍♂️ Running Locally
 
-### Troubleshooting
+1. Clone the repository
+```bash
+git clone https://github.com/RAHULJADHAV-07/parking-management-system.git
+```
 
-- Check Render logs for any deployment errors
-- Verify environment variables are correctly set
-- Ensure MongoDB connection is working
-- Check CORS configuration in backend if API calls fail
+2. Install dependencies
+```bash
+cd parking-management-system
+npm install
+```
+
+3. Start the development server
+```bash
+ng serve
+```
+
+4. Open browser and navigate to `http://localhost:4200`
+
+## 🔑 Environment Variables
+
+Create a `.env` file in the root directory:
+```
+MONGO_URI=your_mongodb_uri
+JWT_SECRET=your_jwt_secret
+```
+
+## 👥 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 📧 Contact
+
+Your Name - [rahuljadhav0417@gmail.com]
+
+Project Link: https://github.com/RAHULJADHAV-07/parking-management-system
